@@ -1,11 +1,14 @@
 pipeline {
     agent any
 
+    triggers {
+        eventTrigger simpleMatch('com.example:my-jar:0.5-SNAPSHOT:jar')
+    }
+
     stages {
-        stage('Example') {
+        stage('Maven Example') {
             steps {
-                echo 'new maven artifact got published'
-                publishEvent simpleEvent('com.example:my-jar:0.5-SNAPSHOT:jar')
+                echo 'a new maven artifact triggered this Pipeline'
             }
         }
     }
