@@ -1,11 +1,14 @@
 pipeline {
     agent any
 
+    triggers {
+        eventTrigger simpleMatch('cloudbees/java-build-tools:LATEST')
+    }
+
     stages {
         stage('Docker Example') {
             steps {
-                echo 'new docker image got published'
-                publishEvent simpleEvent('cloudbees/java-build-tools:LATEST')
+                echo 'a new docker image triggered this Pipeline'
             }
         }
     }
